@@ -85,17 +85,127 @@ Although your friend has an excellent understanding of property prices in her ow
 
 ## Hypothesis and how to validate?
 
-* List here your project hypothesis(es) and how you envision validating it (them).
+- 1 - We suspect key house attributes such as above ground living area, number of bedrooms, and overall quality rating have a strong positive correlation with the sale price
+	- A Correlation study can help in this investigation
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
-* List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
+- **Business Requirement 1:** Data visualisation and correlation study
+    - We will inspect the data related to all atributes related to house sale prices
+    - We will conduct a correlation study (Pearson and Spearman) to better understand the relationship between all variable and house sale prices
+    - We will plot these relationships against house sale prices
+
+#### You may perform a correlation and/or PPS study to investigate the most relevant variables correlated to the sale price. You have to visualize these variables against the sale price, so you can summarize the insights.
+
+- **Business Requirement 2:** Classification, Regression, Cluster and Data Analysis
+    - We want to predict house sale prices and build a classifier to support this.
+    - We want to predict house attributes that will improve house sale prices. We want to build a regression model or change the ML taks to classification depending on regressor performance. 
+    - We want to cluster similar houses to predict from which cluster the sale price will belong
+    - We want to understand a cluster profile to present modifiable options to improve future house sale prices.
+
+
+#### You may deliver an ML system that is capable of reliably predicting the summed sales price of the 4 inherited houses. You may use either conventional ML or Neural Networks to map the relationships between the features and the target. You may consider changing the ML task from Regression to Classification if you find a valid rationale for that. In case you are modelling using conventional ML, with packages like scikit-learn for example, you may conduct an extensive hyperparameter optimization for a given algorithm. You can refer back to the Scikit-learn lesson, Unit Notebook 6: Cross-Validation Search Part 2. At the end of the notebook, you will find a list of hyperparameter options and values to start with, for the family of algorithms we covered in the course.
+
 
 ## ML Business Case
 
 * In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
 
-## Dashboard Design
+
+1. What are the business requirements?
+    - The client is interested in discovering how house attributes correlate with sale prices. Therefore, the client expects data visualizations of the correlated variables against the sale price.
+    - The client is interested in predicting the house sale prices from her 4 inherited houses, and any other house in Ames, Iowa.
+
+2. Is there any business requirement that can be answered with conventional data analysis?
+    - Yes, we can use conventional data analysis to investigate how house attributes are correlated with the sale prices.
+
+3. Does the client need a dashboard or an API endpoint?
+    - The client needs a dashboard
+
+4. What does the client consider as a successful project outcome?
+    - A study showing the most relevant variables correlated to sale price.
+    - Also, a capability to predict the sale price for the 4 inherited houses, as well as any other house in Ames, Iowa.
+    
+5. Can you break down the project into Epics and User Stories?
+    - Information gathering and data collection.
+    - Data visualization, cleaning, and preparation.
+    - Model training, optimization and validation.
+    - Dashboard planning, designing, and development.
+    - Dashboard deployment and release.
+
+6. Ethical or Privacy concerns?
+    - No. The client found a public dataset.
+
+7. Does the data suggest a particular model?
+    - The data suggests a regressor where the target is the sale price.
+
+8. What are the model's inputs and intended outputs?
+    - The inputs are house attribute information and the output is the predicted sale price.
+
+9. What are the criteria for the performance goal of the predictions?
+    - We agreed with the client an R2 score of at least 0.75 on the train set as well as on the test set.
+
+10. How will the client benefit?
+    - The client will maximize the sales price for the inherited properties.
+
+
+### Predict Sale Price
+#### Regression Model
+- We want an ML model to predict house sale price, based on house attributes. A target variable is a discrete number. We consider a **regression model**, which is supervised __and uni-dimensional (TO CONFIRM THIS).__ 
+- Our ideal outcome is to provide our client with reliable insight into maximizing the sales price for their inherited properties.
+- The model success metrics are
+	- At least 0.75 for R2 score, on train and test set
+- The ML model is considered a failure if:
+	- The R2 score is < 0.75
+    - If the more than 50% of the houses are sold at more than 25% less than the predicted sale price.
+- The output is defined as an expected sale price based on the inputted attributes.
+- Heuristics: Currently, there is no model to predict sale price in Ames, Iowa
+- The training data to fit the model comes from public records. This dataset contains about 1.5 thousand house records.
+	- Train data - features: all variables, .... 
+    
+__- Train data - filter data where Churn == 1, then drop the Churn variable. Target: tenure; features: all other variables, but total charges and customerID__
+
+__It is assumed that this model will predict a sale price if the Predict Churn Classifier predicts 1 (yes for churn). If the prospect is online, the prospect will have already provided the input data via a form. If the prospect talks to a salesperson, the salesperson will interview to gather the input data and feed it into the App. The prediction is made on the fly (not in batches).__
+
+
+### Cluster Analysis
+#### Clustering Model
+- We want an ML model to cluster similar houses. It is an unsupervised model.
+- Our ideal outcome is to provide our client with reliable insight into maximising sale prices for their inherited properties.
+- The model success metrics are
+	- at least 0.45 for the average silhouette score
+	- The ML model is considered a failure if the model suggests from more than 15 clusters (might become too difficult to interpret in practical terms)
+- The output is defined as an additional column appended to the dataset. This column represents the cluster's suggestions. It is a categorical and nominal variable represented by numbers starting at 0.
+- Heuristics: Currently, there is no approach to grouping similar sale prices
+- The training data to fit the model comes from public records. This dataset contains about 1.5 thousand customer records.
+	- Train data - features: all variables, .... 
+
+
+
+## Dashboard Design (Streamlit App User Interface)
+
+### Page 1: Quick project summary
+
+A project summary page, showing the project dataset summary and the client's requirements.
+
+### Page 2: Sale Price Study
+
+A page listing your findings related to which features have the strongest correlation to the house sale price.
+
+### Page 3: House Priceometer
+
+A page displaying the 4 houses' attributes and their respective predicted sale price. It should display a message informing the summed predicted price for all 4 inherited houses. You should add interactive input widgets that allow a user to provide real-time house data to predict the sale price.
+
+### Page 4: Project Hypothesis and Validation
+A page indicating your project hypothesis(es) and how you validated it across the project.
+- Before the analysis, we knew we wanted this page to describe the project hypothesis, the conclusions, and how we validated each. After the data analysis, we can report that:
+- 1 - We suspect key house attributes such as above ground living area, number of bedrooms, and overall quality rating have a strong positive correlation with the sale price
+
+
+### Page 5: Predict Sale Price
+A technical page displaying your model performance. If you deployed an ML pipeline, you have to display your pipeline steps.
+
+
 
 * List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
 * Eventually, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but eventually you needed to use another plot type)
