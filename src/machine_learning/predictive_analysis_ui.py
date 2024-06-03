@@ -1,17 +1,46 @@
 import streamlit as st
-from src.machine_learning.custom_transformers import Drop_Cols_Transformer, Create_TotalLivArea_Transformer
+from transformers import Drop_Cols_Transformer, Create_TotalLivArea_Transformer
 
-def predict_house_sale_price(X_live, house_sale_features, hsp_pipeline):
+
+def predict_house_sale_price(X_live, hsp_features, hsp_pipeline):
+    """
+    Function that takes in a dataframe, custom features and pipeline
+    variable
+
+    Execution of function displaye the predicted house price based on
+    on the values for selected features
+    """
 
     # from live data, subset features related to this pipeline
-    X_live_hsp = X_live.filter(house_sale_features)
+    X_live_hsp = X_live[hsp_features]
 
     # predict
     hsp_prediction = hsp_pipeline.predict(X_live_hsp)
     
-    st.write(hsp_prediction)
+    st.write(f"### The predicted sale price for this property is:")
+    hsp_prediction = int(hsp_prediction)
+    st.write(f"### ${hsp_prediction}")
 
     return hsp_prediction
 
-def predict_sale_price_inherited(X_live, house_features, hsp_pipeline):
-    return
+
+def predict_sale_price_inherited(df, hsp_features, hsp_pipeline):
+    """
+    Function that takes in a dataframe, custom features and pipeline
+    variable
+
+    Execution of function displays the predicted house prices of the
+    inherited house dataset
+    """
+
+    # from inherited data, subset features related to this pipeline
+    df_inherited = df[hsp_features]
+
+    # Predict inherited house sale priced
+    hsp_inherited_prediction = hsp_pipeline.predict(df_inherited)
+
+    for i, prediction in enumerate(hsp_inherited_prediction, start = 1):
+        inherited_sale_price = int(prediction)
+        st.write(
+            f"* The predicted sale price of **Inherited property {i}** = ${inherited_sale_price}"
+            )

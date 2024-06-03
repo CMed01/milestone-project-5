@@ -1,10 +1,11 @@
 import streamlit as st
 
 def page_summary_body():
-    
+    """Function that displays the content for the summary page"""
+
     st.write("### Quick Project Summary")
 
-    # text based on README file - "Dataset Content" section
+    # Text based on README file - "Dataset Content" section
     st.info(
         f"**Project Dataset**\n"
         f"The dataset has almost 1.5 thousand rows and represents house sale"
@@ -19,7 +20,7 @@ def page_summary_body():
         f"[Project README file](https://github.com/CMed01/milestone-project-5).")
     
 
-    # copied from README file - "Business Requirements" section
+    # Copied from README file - "Business Requirements" section
     st.success(
         f"The project has 2 business requirements:\n"
         f"* 1 - The client is interested in discovering how the house attributes correlate" 
@@ -28,5 +29,3 @@ def page_summary_body():
         f"* 2 - The client is interested in predicting the house sale price from her"
         f"four inherited houses and any other house in Ames, Iowa."
         )
-
-    return

@@ -6,17 +6,22 @@ import pandas as pd
 from src.data_management import load_house_sale_price_data
 
 
-
 sns.set_style('whitegrid')
 
+
 def page_sale_price_study_body():
+    """Function that displays the content for the sale price study body"""
 
     # load data
     df_saleprice = load_house_sale_price_data()
 
     # hard copied from churned customer study notebook
-    vars_to_study = ['1stFlrSF','GarageArea','GarageFinish','GarageYrBlt','GrLivArea','KitchenQual','OverallQual','TotalBsmtSF','YearBuilt','YearRemodAdd']
+    vars_to_study = [
+        '1stFlrSF','GarageArea','GarageFinish','GarageYrBlt','GrLivArea','KitchenQual',
+        'OverallQual','TotalBsmtSF','YearBuilt','YearRemodAdd'
+        ]
 
+    # Summary body for page
     st.write("### House Sale Price Study")
 
     st.info(
@@ -24,7 +29,7 @@ def page_sale_price_study_body():
         f"the sale price. Therefore, the client expects data visualisations of the correlated"
         f" variables against the sale price to show that.")
 
-    # inspect data
+    # Inspect data
     if st.checkbox("Inspect Customer Base"):
         st.write(
             f"* The dataset has {df_saleprice.shape[0]} rows and {df_saleprice.shape[1]} columns, "
@@ -44,9 +49,9 @@ def page_sale_price_study_body():
     # Text based on "02 - Churned Customer Study" notebook - "Conclusions and Next steps" section
     st.info(
         f"The correlations and plots interpretation converge.\n"
-        f"* Larger floor space (GrLivArea, 1stFlrSF, GarageArea and TotalBsmtSF) " 
+        f"* Larger floor space (GrLivArea, 1stFlrSF, GarageArea and TotalBsmtSF) "
         f"is associated with a higher SalePrice\n"
-        f"* Combined TotalLivArea, which includes above and below ground correlates " 
+        f"* Combined TotalLivArea, which includes above and below ground correlates "
         f"stronger to a higher SalePrice.\n"
         f"* GrLivArea has the highest individual correlation to a higher SalePrice.\n"
         f"* Newer built properties (YearBuilt) are higher in SalePrice.\n"
@@ -57,7 +62,7 @@ def page_sale_price_study_body():
         f"higher SalePrice (GarageFinish and KitchenQual)\n"
     )
 
-    # Code copied from "02 - Churned Customer Study" notebook - "EDA on selected variables" section
+    # Code copied from "02 - SalePrice Study" notebook - "EDA on selected variables" section
     df_eda = df_saleprice.filter(vars_to_study + ['SalePrice'])
 
     # Individual plots per variable
@@ -68,8 +73,12 @@ def page_sale_price_study_body():
     if st.checkbox("TotalLivArea per SalePrice"):
         liv_total_area_variable(df_eda)
 
-    
+
+# Code copied from "02 - SalePrice Study" notebook - "EDA on selected variables" section
 def plot_regression(df, col, target_var, alpha_scatter=0.5):
+    """ 
+    FUnction for a regression plot on the House Sale Price data
+    """
     fig, axes = plt.subplots(figsize=(8, 5))
     sns.regplot(data=df, x=col, y=target_var, scatter_kws={'alpha': alpha_scatter}, line_kws={'color': 'red'})
     plt.title(f"{col} vs {target_var}", fontsize=20, y=1.05)
@@ -79,6 +88,9 @@ def plot_regression(df, col, target_var, alpha_scatter=0.5):
 
 
 def plot_boxplot(df, col, target_var):
+    """ 
+    FUnction for a boxplot plot on the House Sale Price data
+    """
     fig, axes = plt.subplots(figsize=(8, 5))
     sns.boxplot(data=df, x=col, y=target_var)
     plt.title(f"{col} vs {target_var}", fontsize=20, y=1.05)
@@ -88,6 +100,10 @@ def plot_boxplot(df, col, target_var):
 
 
 def sale_price_per_variable(df):
+    """ 
+    FUnction to render plot images to the terminal for:
+    plot_boxplot() and plot_regression
+    """
     target_var = 'SalePrice'
     vars_to_study_numerical = ['1stFlrSF','GarageArea', 'GarageYrBlt', 'GrLivArea',  'TotalBsmtSF', 'YearBuilt', 'YearRemodAdd']
     vars_to_study_categorical = ['GarageFinish','KitchenQual', 'OverallQual']
@@ -101,6 +117,12 @@ def sale_price_per_variable(df):
         print("\n\n")
 
 def liv_total_area_variable(df):
+    """ 
+    FUnction to calculate a variable detailing the total living area
+    below and above ground
+
+    Then displays a regression plot
+    """
     target_var = 'SalePrice'
     df['TotalLivArea'] = df['GrLivArea'] + df['TotalBsmtSF']
     plot_regression(df, 'TotalLivArea', target_var)
