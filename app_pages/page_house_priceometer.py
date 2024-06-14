@@ -72,12 +72,10 @@ def page_priceometer_body():
         property_index =[f'Inherited property {i}' for i in range(1, len(df_inherited) + 1)]
         df_inherited.index = property_index
 
-        st.write(df_inherited.head(10))
+        st.write(df_inherited.head(4))
 
         if st.button("Run house sale prediciton for the inherited houses"):
-            st.write(
                 predict_sale_price_inherited(df_inherited, hsp_features, hsp_pipeline)
-            )
 
 
 def DrawInputsWidgets():
