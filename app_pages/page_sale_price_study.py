@@ -68,9 +68,9 @@ def page_sale_price_study_body():
     # Correlations of each variable to sale prirce
     if st.checkbox("Correlation of variables to SalePrice"):
         corr_spearman_eda = df_eda.corr(
-            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(15)
+            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(10)
         corr_pearson_eda = df_eda.corr(
-            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(24)
+            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(10)
         combined_corr = pd.DataFrame({
             'Pearson': corr_pearson_eda,
             'Spearman': corr_spearman_eda
@@ -89,9 +89,9 @@ def page_sale_price_study_body():
     if st.checkbox("Correlation of variable, after new addition, to SalePrice"):
         df_eda['TotalLivArea'] = df_eda['GrLivArea'] + df_eda['TotalBsmtSF']
         corr_spearman_eda_new = df_eda.corr(
-            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(15)
+            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(10)
         corr_pearson_eda_new = df_eda.corr(
-            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(24)
+            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(10)
         combined_corr = pd.DataFrame({
             'Pearson': corr_pearson_eda_new,
             'Spearman': corr_spearman_eda_new
