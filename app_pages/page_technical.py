@@ -46,13 +46,20 @@ def page_technical_body():
     st.write("---")
 
     # show pipeline steps
-    st.write("* ML pipeline to predict tenure when prospect is expected to churn.")
+    st.write("* ML pipeline to predict sale price.")
     st.write(hsp_pipeline)
     st.write("---")
 
     # show feature importance
-    st.write("* The features the model was trained and their importance.")
+    st.write(f"* The features the model was trained and their importance.\n")
     st.write(X_train.columns.to_list())
+    st.write(
+        f"* Note following the application of the pipeline, the model was "
+        f"trained on a new feature 'TotalLivArea' - which is a combination of "
+        f"'GrLivArea' and 'TotalBsmtSF'.\n"
+        f"* 'TotalLivArea' had a higher correlation to sale price - "
+        f"see the 'House Price Sale Study Page'.\n"
+        )
     st.image(feature_importance_plots)
     st.write("---")
 
