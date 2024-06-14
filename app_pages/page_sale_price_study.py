@@ -43,7 +43,7 @@ def page_sale_price_study_body():
     st.write(
         f"* A correlation study was conducted in the notebook to better understand how "
         f"the variables are correlated to House sale prices (SalePrice). \n"
-        f"The most correlated variable are: **{vars_to_study}**"
+        f"The most correlated variable (studied variables) are: **{vars_to_study}**"
     )
 
     # Text based on "02 - Churned Customer Study" notebook - "Conclusions and Next steps" section
@@ -75,28 +75,47 @@ def page_sale_price_study_body():
             'Pearson': corr_pearson_eda,
             'Spearman': corr_spearman_eda
             })
+
+        st.write(
+            f"The following table displays both the Pearson and Spearman correlation "
+            f"scores of the studied variables and SalePrice"
+            )
         st.write(combined_corr)
 
     # Individual plots per variable
     if st.checkbox("Variable per SalePrice"):
+        st.write(
+            f"The following figures display each studied variable plotted against the SalePrice" 
+            )
         sale_price_per_variable(df_eda)
 
-    # Individual plots per variable
-    if st.checkbox("TotalLivArea per SalePrice"):
-        liv_total_area_variable(df_eda)
+    # Addition of new variable
+    df_eda['TotalLivArea'] = df_eda['GrLivArea'] + df_eda['TotalBsmtSF']
 
     # Correlation of new variable
     if st.checkbox("Correlation of variable, after new addition, to SalePrice"):
-        df_eda['TotalLivArea'] = df_eda['GrLivArea'] + df_eda['TotalBsmtSF']
+        st.write(
+            f"The following table displays both the Pearson and Spearman correlation "
+            f"scores of the studied variables and new 'TotalLivArea' variable "
+            f"against SalePrice. \n\n"
+            f"Note TotalLivArea is the sum of 'GrLivArea' and 'TotalBsmtSF'"
+            )
         corr_spearman_eda_new = df_eda.corr(
-            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(10)
+            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(11)
         corr_pearson_eda_new = df_eda.corr(
-            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(10)
+            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(11)
         combined_corr = pd.DataFrame({
             'Pearson': corr_pearson_eda_new,
             'Spearman': corr_spearman_eda_new
             })
         st.write(combined_corr)
+
+    # Individual plots per variable
+    if st.checkbox("TotalLivArea per SalePrice"):
+        st.write(
+            f"The following figures display the new variable 'TotalLivArea' plotted against the SalePrice" 
+            )
+        liv_total_area_variable(df_eda)
 
 
 # Code copied from "02 - SalePrice Study" notebook - "EDA on selected variables" section
@@ -149,5 +168,4 @@ def liv_total_area_variable(df):
     Then displays a regression plot
     """
     target_var = 'SalePrice'
-    df['TotalLivArea'] = df['GrLivArea'] + df['TotalBsmtSF']
     plot_regression(df, 'TotalLivArea', target_var)

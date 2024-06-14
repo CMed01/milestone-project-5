@@ -183,6 +183,14 @@ The following libraries were used throughout this project to manipulate, analyse
 * [yellowbrick](https://www.scikit-yb.org/en/latest/) - version 1.3
 
 
+## Debugging
+
+* Custom data transformers were required to ensure the pipeline cleaned the date effectively. Initially these custom classes were embedded in the respective Jupyter Notebooks.
+    * When deploying the streamlit application the custom transformers were not imported into the web application and the error messages were observed.
+    * Stack overflow was interrogated and a solution was identified.
+    * The custom transformers needed to be contained within a project directory level python file (transformers.py).
+    * This high level python could then be imported into both the Jupyter Notebooks and the streamlit web pages and this solved the issue allowing the successful deployment of the ML pipeline within the streamlit web app.
+
 ## Credits
 
 * This code was based on the Code Institute Walkthrough Project 2 - Churnometer project. Code was adapated to fit the requirements of this project and referenced through the Jupyter Notebooks.

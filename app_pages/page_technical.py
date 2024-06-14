@@ -55,11 +55,12 @@ def page_technical_body():
     st.write(X_train.columns.to_list())
     st.write(
         f"* Note following the application of the pipeline, the model was "
-        f"trained on a new feature 'TotalLivArea' - which is a combination of "
+        f"trained on a new feature 'TotalLivArea' - which is the sum of "
         f"'GrLivArea' and 'TotalBsmtSF'.\n"
         f"* 'TotalLivArea' had a higher correlation to sale price - "
         f"see the 'House Price Sale Study Page'.\n"
         )
+    st.write(f"The following figure displays the feature importance plot")
     st.image(feature_importance_plots)
     st.write("---")
 
@@ -69,5 +70,10 @@ def page_technical_body():
     regression_performance(X_train, y_train, X_test, y_test, hsp_pipeline)
 
     # show pipeline performance plot
+    st.write(
+        f"The following scatterplot displays the Actual vs Prediction performance "
+        f"evaluation of both the test and train sets \n\n"
+        f"I.e. the closer the dots are to the line, the better"
+        )
     st.image(evaluation_plots)
     
