@@ -1,46 +1,4 @@
-# ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
-
-## Template Instructions
-
-Welcome,
-
-This is the Code Institute student template for the Heritage Housing project option in Predictive Analytics. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions. Click the `Use this template` button above to get started.
-
-You can safely delete the Template Instructions section of this README.md file,  and modify the remaining paragraphs for your own project. Please do read the Template Instructions at least once, though! It contains some important information about the IDE and the extensions we use.
-
-## How to use this repo
-
-1. Use this template to create your GitHub project repo
-
-2. Log into the cloud-based IDE with your GitHub account.
-
-3. On your Dashboard, click on the Create button
-
-4. Paste in the URL you copied from GitHub earlier
-
-5. Click Create
-
-6. Wait for the workspace to open. This can take a few minutes.
-
-7. Open a new terminal and `pip3 install -r requirements.txt`
-
-11. Open the jupyter_notebooks directory and click on the notebook you want to open.
-
-12. Click the kernel button and choose Python Environments.
-
-Note that the kernel says Python 3.8.18 as it inherits from the workspace so it will be Python-3.8.18 as installed by our template. To confirm this you can use `! python --version` in a notebook code cell.
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with *Regenerate API Key*.
+# House Sale Price Data Analytic Project
 
 ## Dataset Content
 
@@ -86,7 +44,7 @@ Although your friend has an excellent understanding of property prices in her ow
 ## Hypothesis and how to validate?
 
 - 1 - We suspect key house attributes such as above ground living area, number of bedrooms, and overall quality rating have a strong positive correlation with the sale price
-	- A Correlation study can help in this investigation
+	- A correlation study can help in this investigation
 
 ## The rationale to map the business requirements to the Data Visualisations and ML tasks
 
@@ -104,13 +62,7 @@ Although your friend has an excellent understanding of property prices in her ow
     - We want to understand a cluster profile to present modifiable options to improve future house sale prices.
 
 
-#### You may deliver an ML system that is capable of reliably predicting the summed sales price of the 4 inherited houses. You may use either conventional ML or Neural Networks to map the relationships between the features and the target. You may consider changing the ML task from Regression to Classification if you find a valid rationale for that. In case you are modelling using conventional ML, with packages like scikit-learn for example, you may conduct an extensive hyperparameter optimization for a given algorithm. You can refer back to the Scikit-learn lesson, Unit Notebook 6: Cross-Validation Search Part 2. At the end of the notebook, you will find a list of hyperparameter options and values to start with, for the family of algorithms we covered in the course.
-
-
 ## ML Business Case
-
-* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
-
 
 1. What are the business requirements?
     - The client is interested in discovering how house attributes correlate with sale prices. Therefore, the client expects data visualizations of the correlated variables against the sale price.
@@ -163,24 +115,6 @@ Although your friend has an excellent understanding of property prices in her ow
 - The training data to fit the model comes from public records. This dataset contains about 1.5 thousand house records.
 	- Train data - features: all variables, .... 
     
-__- Train data - filter data where Churn == 1, then drop the Churn variable. Target: tenure; features: all other variables, but total charges and customerID__
-
-__It is assumed that this model will predict a sale price if the Predict Churn Classifier predicts 1 (yes for churn). If the prospect is online, the prospect will have already provided the input data via a form. If the prospect talks to a salesperson, the salesperson will interview to gather the input data and feed it into the App. The prediction is made on the fly (not in batches).__
-
-
-### Cluster Analysis
-#### Clustering Model
-- We want an ML model to cluster similar houses. It is an unsupervised model.
-- Our ideal outcome is to provide our client with reliable insight into maximising sale prices for their inherited properties.
-- The model success metrics are
-	- at least 0.45 for the average silhouette score
-	- The ML model is considered a failure if the model suggests from more than 15 clusters (might become too difficult to interpret in practical terms)
-- The output is defined as an additional column appended to the dataset. This column represents the cluster's suggestions. It is a categorical and nominal variable represented by numbers starting at 0.
-- Heuristics: Currently, there is no approach to grouping similar sale prices
-- The training data to fit the model comes from public records. This dataset contains about 1.5 thousand customer records.
-	- Train data - features: all variables, .... 
-
-
 
 ## Dashboard Design (Streamlit App User Interface)
 
@@ -206,19 +140,11 @@ A page indicating your project hypothesis(es) and how you validated it across th
 A technical page displaying your model performance. If you deployed an ML pipeline, you have to display your pipeline steps.
 
 
-
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
-* Eventually, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but eventually you needed to use another plot type)
-
-## Unfixed Bugs
-
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
-
 ## Deployment
 
 ### Heroku
 
-* The App live link is: <https://YOUR_APP_NAME.herokuapp.com/>
+* The App live link is: [House Priceometer](https://house-priceometer-milestone-5-cf39fc0a164e.herokuapp.com/)
 * Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
 * The project was deployed to Heroku using the following steps.
 
@@ -231,26 +157,38 @@ A technical page displaying your model performance. If you deployed an ML pipeli
 
 ## Main Data Analysis and Machine Learning Libraries
 
-* Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
+### Applications
+* [Gitpod](https://www.gitpod.io/) - Cloud based IDE used to develop code for this project
+* [Github](https://github.com/) - Repository used for this project
+* [Heroku](https://www.heroku.com/) - Used to deploy the website
+* [Jupyter Notebooks](https://jupyter.org/) - Used to document the workflow used during this data analytic project
+* [Kaggle](https://www.kaggle.com/) - Used to access the dataset used for this project
+* [Streamlit](https://streamlit.io/) - Used to visualise the data in a web based application
+* [CI Python Linter](https://pep8ci.herokuapp.com/) - Used to format the code meeting PEP8 standard.
+
+### Libraries
+
+The following libraries were used throughout this project to manipulate, analyse and trasnform the data. The data was then passed through machine learning models before being visualised through and web page application.
+* [numpy](https://numpy.org/) - version 1.19.5
+* [pandas](https://pandas.pydata.org/) - version 1.4.2
+* [matplotlib](https://matplotlib.org/) - version 3.3.1
+* [seaborn](https://seaborn.pydata.org/) - version 0.11.0
+* [ydata-profiling](https://docs.profiling.ydata.ai/latest/) - version 4.4.0
+* [plotly](https://plotly.com/) - version 4.12.0
+* [ppscore](https://pypi.org/project/ppscore/0) - version 1.2.0
+* [scikit-learn](https://scikit-learn.org/stable/) - version 0.24.2
+* [feature-engine](https://feature-engine.trainindata.com/en/latest/) - version 1.0.2
+* [imbalanced-learn](https://imbalanced-learn.org/stable/) - version 0.8.0
+* [xgboost](https://xgboost.readthedocs.io/en/latest/index.html) - version - 1.2.1
+* [yellowbrick](https://www.scikit-yb.org/en/latest/) - version 1.3
+
 
 ## Credits
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism.
-* You can break the credits section up into Content and Media, depending on what you have included in your project.
-
-### Content
-
-* The text for the Home page was taken from Wikipedia Article A
-* Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-* The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
-
-### Media
-
-* The photos used on the home and sign-up page are from This Open Source site
-* The images used for the gallery page were taken from this other open-source site
+* This code was based on the Code Institute Walkthrough Project 2 - Churnometer project. Code was adapated to fit the requirements of this project and referenced through the Jupyter Notebooks.
+* The documentation for the libraries used supported the develeopment of this project
 
 ## Acknowledgements (optional)
 
-
-* In case you would like to thank the people that provided support through this project.
-
+* I would like to thank my mentor Princess Ijege for his support and wisdom throughout this project.
+* I would like to thank the Code Institute tutor and student support team who were extremly supportive and responsive with all queries and problems I encountered during this project.
