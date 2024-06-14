@@ -27,7 +27,7 @@ def page_technical_body():
     y_test = pd.read_csv(
         f"outputs/ml_pipeline/predict_sale_price/{version}/y_test.csv")
 
-    st.write("### ML Pipeline: Predict Prospect Tenure")
+    st.write("### ML Pipeline: Predict House Sale Price")
 
     # display pipeline training summary conclusions
     st.info(

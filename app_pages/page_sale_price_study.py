@@ -65,6 +65,18 @@ def page_sale_price_study_body():
     # Code copied from "02 - SalePrice Study" notebook - "EDA on selected variables" section
     df_eda = df_saleprice.filter(vars_to_study + ['SalePrice'])
 
+    # Correlations of each variable to sale prirce
+    if st.checkbox("Correlation of variables to SalePrice"):
+        corr_spearman_eda = df_eda.corr(
+            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(15)
+        corr_pearson_eda = df_eda.corr(
+            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(24)
+        combined_corr = pd.DataFrame({
+            'Pearson': corr_pearson_eda,
+            'Spearman': corr_spearman_eda
+            })
+        st.write(combined_corr)
+
     # Individual plots per variable
     if st.checkbox("Variable per SalePrice"):
         sale_price_per_variable(df_eda)
@@ -72,6 +84,19 @@ def page_sale_price_study_body():
     # Individual plots per variable
     if st.checkbox("TotalLivArea per SalePrice"):
         liv_total_area_variable(df_eda)
+
+    # Correlation of new variable
+    if st.checkbox("Correlation of variable, after new addition, to SalePrice"):
+        df_eda['TotalLivArea'] = df_eda['GrLivArea'] + df_eda['TotalBsmtSF']
+        corr_spearman_eda_new = df_eda.corr(
+            method='spearman')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(15)
+        corr_pearson_eda_new = df_eda.corr(
+            method='pearson')['SalePrice'].sort_values(key=abs, ascending=False)[1:].head(24)
+        combined_corr = pd.DataFrame({
+            'Pearson': corr_pearson_eda_new,
+            'Spearman': corr_spearman_eda_new
+            })
+        st.write(combined_corr)
 
 
 # Code copied from "02 - SalePrice Study" notebook - "EDA on selected variables" section
