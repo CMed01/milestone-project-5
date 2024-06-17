@@ -86,7 +86,7 @@ def DisplayCorrAndPPS(df_corr_pearson, df_corr_spearman,
     st.write("\n")
     st.write("*** Heatmap: Power Predictive Score (PPS) ***")
     st.write(
-      f'PPS threshold set to >0.2'
+      f'PPS threshold set to >0.2. '
       f"The score ranges from 0 (no predictive power) to 1 (perfect "
       f"predictive power) \n")
     heatmap_pps(df=pps_matrix, threshold=PPS_Threshold, figsize=figsize,

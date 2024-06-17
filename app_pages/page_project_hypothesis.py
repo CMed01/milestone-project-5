@@ -36,13 +36,13 @@ def page_project_hypothesis_body():
 
     if st.checkbox("Display Correlation plots"):
         st.warning(
-            f'* We note from the correlation anaylsis, that good values'
+            f'* We note from the correlation analysis, that good values'
             f' were reported for a large number of variables, therefore we '
             f'have amended the displayed correlation threshold to >0.6  \n'
             f'* In the following Correlation plots and Predictive Power '
             f'Score plot we can see highly correlated variables '
             f'to SalePrice. \n'
-            f'* We demonstrate that three features have predicitve powers '
+            f'* We demonstrate that three features have predictive powers '
             f'> 0.2 for SalePrice '
             )
         DisplayCorrAndPPS(

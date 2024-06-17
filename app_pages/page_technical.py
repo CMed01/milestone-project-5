@@ -40,8 +40,8 @@ def page_technical_body():
         f"* The R2 value in the test set compared to the train set was lower, "
         f"but deemed within acceptable ranges. \n"
         f"* There may be a suggestion that the model has overfitted in "
-        f"the train set and futher exploration may be warrented in the "
-        f"future to improves the models performance on unseen data. \n"
+        f"the train set and further exploration may be warranted in the "
+        f"future to improve the models performance on unseen data. \n"
     )
 
     st.write("---")
