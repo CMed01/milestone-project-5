@@ -8,7 +8,8 @@ from app_pages.page_house_priceometer import page_priceometer_body
 from app_pages.page_project_hypothesis import page_project_hypothesis_body
 from app_pages.page_technical import page_technical_body
 
-app = MultiPage(app_name= "House Priceometer") # Create an instance of the app 
+# Create an instance of the app
+app = MultiPage(app_name="House Priceometer")
 
 # Add your app pages here using .add_page()
 app.add_page("Quick Project Summary", page_summary_body)
@@ -17,4 +18,5 @@ app.add_page("Sale Priceometerr", page_priceometer_body)
 app.add_page("Project Hypothesis and Validation", page_project_hypothesis_body)
 app.add_page("ML: Predict House Sale Price", page_technical_body)
 
-app.run() # Run the  app
+# Run the app
+app.run()

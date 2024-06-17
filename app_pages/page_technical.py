@@ -31,16 +31,17 @@ def page_technical_body():
 
     # display pipeline training summary conclusions
     st.info(
-        f"* We aimed to develop an ML model to predict house sale price, based on house attributes."
+        f"* We aimed to develop an ML model to predict house sale price, "
+        f"based on house attributes."
         f"The model was considered a success if: \n"
         f"* At least 0.75 for R2 score, on train and test set. \n"
-        f"* Both the train and tests after cleaning data and applying feature engineering "
-        f" achieved an R2 score > 0.75 (0.886, 0.797) \n"
-        f"* The R2 value in the test set compared to the train set was lower, " 
+        f"* Both the train and tests after cleaning data and applying "
+        f"feature engineering achieved an R2 score > 0.75 (0.886, 0.797) \n"
+        f"* The R2 value in the test set compared to the train set was lower, "
         f"but deemed within acceptable ranges. \n"
-        f"* There may be a suggestion that the model has overfitted in the train set "
-        f"and futher exploration may be warrented in the future to improves the "
-        f"models performance on unseen data. \n"
+        f"* There may be a suggestion that the model has overfitted in "
+        f"the train set and futher exploration may be warrented in the "
+        f"future to improves the models performance on unseen data. \n"
     )
 
     st.write("---")
@@ -71,9 +72,8 @@ def page_technical_body():
 
     # show pipeline performance plot
     st.write(
-        f"The following scatterplot displays the Actual vs Prediction performance "
-        f"evaluation of both the test and train sets \n\n"
+        f"The following scatterplot displays the Actual vs Prediction "
+        f"performance evaluation of both the test and train sets \n\n"
         f"I.e. the closer the dots are to the line, the better"
         )
     st.image(evaluation_plots)
-    

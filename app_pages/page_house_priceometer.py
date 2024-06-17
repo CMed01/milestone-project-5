@@ -20,10 +20,10 @@ def page_priceometer_body():
 
     st.write("### Business Requirements")
     st.info(
-        f"*  The client is interested in predicting the house sale price from her four inherited houses " 
+        f"*  The client is interested in predicting the house sale price from her four inherited houses "
         f"and any other house in Ames, Iowa."
     )
-    
+
     st.write("---")
 
     # generate Live Data
@@ -35,7 +35,7 @@ def page_priceometer_body():
 
     # predict on live data
     st.text("")
-    if st.button("Run Predictive Analysis"): 
+    if st.button("Run Predictive Analysis"):
         sale_price_prediction = predict_house_sale_price(X_live, hsp_features, hsp_pipeline)
 
     if st.checkbox("Data entry help information"):
@@ -69,13 +69,13 @@ def page_priceometer_body():
             f"find below details of 4 houses."
             )
 
-        property_index =[f'Inherited property {i}' for i in range(1, len(df_inherited) + 1)]
+        property_index = [f'Inherited property {i}' for i in range(1, len(df_inherited) + 1)]
         df_inherited.index = property_index
 
         st.write(df_inherited.head(4))
 
         if st.button("Run house sale prediciton for the inherited houses"):
-                predict_sale_price_inherited(df_inherited, hsp_features, hsp_pipeline)
+            predict_sale_price_inherited(df_inherited, hsp_features, hsp_pipeline)
 
 
 def DrawInputsWidgets():
@@ -142,7 +142,7 @@ def DrawInputsWidgets():
             min_value=df[feature].min(),
             max_value=df[feature].max(),
             value=int(df[feature].median())
-        )   
+        )
     X_live[feature] = st_widget
 
     return X_live

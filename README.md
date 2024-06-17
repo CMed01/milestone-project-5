@@ -1,5 +1,24 @@
 # House Sale Price Data Analytic Project
 
+The House Priceometer application can be viewed [here](https://house-priceometer-milestone-5-cf39fc0a164e.herokuapp.com/)
+
+## Table of contents
+
+- [Table of contents](#table-of-contents)
+- [Dataset Content](#dataset-content)
+- [Business Requirements](#business-requirements)
+- [Hypothesis and how to validate?](#hypothesis-and-how-to-validate)
+- [Business Requirments](#the-rationale-to-map-the-business-requirements-to-the-data-visualisations-and-ml-tasks)
+- [ML Business Case](#ml-business-case)
+- [Dashboard Design](#dashboard-design-streamlit-app-user-interface)
+- [Deployment](#deployment)
+- [Data Analysis and ML Libraries](#main-data-analysis-and-machine-learning-libraries)
+- [Debugging](#debugging)
+- [Credits](#credits)
+- [Acknowledgements](#acknowledgements)
+
+
+
 ## Dataset Content
 
 * The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace.
@@ -196,7 +215,7 @@ The following libraries were used throughout this project to manipulate, analyse
 * This code was based on the Code Institute Walkthrough Project 2 - Churnometer project. Code was adapated to fit the requirements of this project and referenced through the Jupyter Notebooks.
 * The documentation for the libraries used supported the develeopment of this project
 
-## Acknowledgements (optional)
+## Acknowledgements
 
 * I would like to thank my mentor Princess Ijege for his support and wisdom throughout this project.
 * I would like to thank the Code Institute tutor and student support team who were extremly supportive and responsive with all queries and problems I encountered during this project.
